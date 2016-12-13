@@ -1,0 +1,20 @@
+{
+  "name": "canvas_applied",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zxg <bothqia@126.com> (https://github.com/qg520jungle)",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.11.2",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-html-extend": "^1.1.6",
+    "gulp-less": "^3.0.5",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1"
+  }
+}
