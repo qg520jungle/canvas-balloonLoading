@@ -36,32 +36,16 @@
        var canvas = document.getElementById('balloon');
        var ctx = canvas.getContext('2d');
       function draw_Ball(p,size) {
-        //ctx = canvas.getContext("2d")
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = "#333";
-        ctx.beginPath();
-        ctx.moveTo(p.x+1, p.y);
-        ctx.bezierCurveTo(p.x-1-size.hor, p.y-size.ver, p.x-1+size.hor, p.y-size.ver, p.x-1, p.y);
-        ctx.stroke();
-        
-      }
-      function draw_Boom() {
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = "#333";
-        ctx.beginPath();
-        ctx.moveTo(104, 173);
-        ctx.quadraticCurveTo(196, 156, 196, 74);
-        ctx.moveTo(196, 74);
-        ctx.quadraticCurveTo(196, 156, 272, 135);
-        ctx.moveTo(272, 135);
-        ctx.quadraticCurveTo(247, 203, 311, 216);
-        ctx.moveTo(311, 216);
-        ctx.quadraticCurveTo(241, 216, 238, 315);
-        ctx.moveTo(238, 315);
-        ctx.quadraticCurveTo(206, 219, 140, 231);
-        ctx.moveTo(140, 231);
-        ctx.quadraticCurveTo(176, 165, 104, 173);
-        ctx.stroke();
+         
+        if (canvas.getContext) {
+              //ctx = canvas.getContext("2d")
+              ctx.lineWidth = 2;
+              ctx.strokeStyle = "#333";
+              ctx.beginPath();
+              ctx.moveTo(p.x+1, p.y);
+              ctx.bezierCurveTo(p.x-1-size.hor, p.y-size.ver, p.x-1+size.hor, p.y-size.ver, p.x-1, p.y);
+              ctx.stroke();
+        }
       }
       function _clear(w,h){
           ctx.clearRect(0,0,w,h) 
@@ -80,21 +64,44 @@
          ver:100,
          hor:100
       }
-      var step = 3
-      var _go = setInterval(function(){
-          _clear(w,h)
-          size.ver += step;
-          size.hor += step;
-          draw_Ball(p,size)
-          step++
-          console.log(step)
-      },t);
+      var step = 228
+      size.ver += step
+      size.hor += step;
+      draw_Ball(p,size)
+      function draw_Boom() {
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#333";
+        ctx.beginPath();
+        ctx.moveTo(104, 173);
+        ctx.quadraticCurveTo(196, 156, 196, 74);
+        ctx.moveTo(196, 74);
+        ctx.quadraticCurveTo(196, 156, 272, 135);
+        ctx.moveTo(272, 135);
+        ctx.quadraticCurveTo(247, 203, 311, 216);
+        ctx.moveTo(311, 216);
+        ctx.quadraticCurveTo(241, 216, 238, 315);
+        ctx.moveTo(238, 315);
+        ctx.quadraticCurveTo(206, 219, 140, 231);
+        ctx.moveTo(140, 231);
+        ctx.quadraticCurveTo(176, 165, 104, 173);
+        ctx.stroke();
+      }
+      // var _go = setInterval(function(){
+      //     _clear(w,h)
+      //     size.ver += step;
+      //     size.hor += step;
+      //     draw_Ball(p,size)
+      //     step++
+      //     console.log(step)
+
+      // },t);
       var _stop = setTimeout(function(){
-        clearInterval(_go)
-        clearTimeout(_stop)
-        _clear(w,h)
+       // clearInterval(_go)
+        //_clear(w,h)
         draw_Boom()
-      },tt)
+        clearTimeout(_stop)
+        console.log(size)
+      },3000)
     </script>
 </body>
 
