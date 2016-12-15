@@ -64,44 +64,121 @@
          ver:100,
          hor:100
       }
-      var step = 228
+      var pb = {
+        x:250,
+        y:300
+      }
+      var sizeb = {
+         ver:50,
+         hor:70
+      }
+      var step = 3
+      var stepb = 2
       size.ver += step
       size.hor += step;
       draw_Ball(p,size)
-      function draw_Boom() {
+      function draw_Boom(pb,sizeb) {
         ctx.lineWidth = 2;
         ctx.strokeStyle = "#333";
         ctx.beginPath();
-        ctx.moveTo(104, 173);
-        ctx.quadraticCurveTo(196, 156, 196, 74);
-        ctx.moveTo(196, 74);
-        ctx.quadraticCurveTo(196, 156, 272, 135);
-        ctx.moveTo(272, 135);
-        ctx.quadraticCurveTo(247, 203, 311, 216);
-        ctx.moveTo(311, 216);
-        ctx.quadraticCurveTo(241, 216, 238, 315);
-        ctx.moveTo(238, 315);
-        ctx.quadraticCurveTo(206, 219, 140, 231);
-        ctx.moveTo(140, 231);
-        ctx.quadraticCurveTo(176, 165, 104, 173);
+        console.log(pb)
+        var p={};
+        p.x = pb.x;
+        p.y = parseInt(pb.y - sizeb.hor/2) -10 ;
+        var b={},b1={},b2={},b3={},_b1={},_b2={},_b3={};
+        var i1={},i2={},i3={},_i={},_i1={},_i2={},_i3={};
+         b = p;
+         //b.y = b.y - sizeb.hor
+         b1.x = b.x - sizeb.ver;
+         b1.y = parseInt(b.y - sizeb.hor  + sizeb.hor/2);
+         b2.x = parseInt(b1.x - sizeb.ver  + sizeb.ver/6);
+         b2.y = b1.y - sizeb.hor;
+         b3.x = b1.x  ;
+         b3.y = b2.y - sizeb.hor;
+         _b1.x = b.x + sizeb.ver;
+         _b1.y = parseInt(b.y - sizeb.hor + sizeb.hor/2);
+         _b2.x = parseInt(_b1.x + sizeb.ver - sizeb.ver/6);
+         _b2.y = _b1.y - sizeb.hor;
+         _b3.x = _b1.x;
+         _b3.y = _b2.y - sizeb.hor;
+
+         i1.x = parseInt(b.x - sizeb.ver/4)
+         i1.y = parseInt(b1.y + sizeb.hor/6);
+         i2.x = b1.x;
+         i2.y = parseInt(b2.y + sizeb.hor/4);
+         i3.x = b3.x;
+         i3.y = parseInt(b2.y - sizeb.hor/4);
+         _i.x = b.x;
+         _i.y = parseInt(b2.y - sizeb.hor/2);
+         _i3.x = _b3.x;
+         _i3.y = parseInt(b2.y - sizeb.hor/4);
+         _i2.x = _b1.x;
+         _i2.y = parseInt(_b2.y + sizeb.hor/4);
+         _i1.x = parseInt(b.x + sizeb.ver/4);
+         _i1.y = parseInt(b1.y + sizeb.hor/6);
+        ctx.moveTo(b.x,b.y);
+        ctx.quadraticCurveTo(i1.x, i1.y, b1.x, b1.y);
+        ctx.moveTo(b1.x, b1.y);
+        ctx.quadraticCurveTo(i2.x, i2.y, b2.x, b2.y);
+        ctx.moveTo(b2.x,b2.y);
+        ctx.quadraticCurveTo(i3.x, i3.y, b3.x, b3.y);
+        ctx.moveTo(b3.x,b3.y);
+        ctx.quadraticCurveTo(_i.x, _i.y, _b3.x,_b3.y);
+        ctx.moveTo(_b3.x,_b3.y);
+        ctx.quadraticCurveTo(_i3.x, _i3.y, _b2.x, _b2.y);
+        ctx.moveTo(_b2.x, _b2.y);
+        ctx.quadraticCurveTo(_i2.x, _i2.y, _b1.x, _b1.y);
+        ctx.moveTo(_b1.x, _b1.y);
+        ctx.quadraticCurveTo(_i1.x, _i1.y, b.x, b.y);
+        
         ctx.stroke();
       }
-      // var _go = setInterval(function(){
-      //     _clear(w,h)
-      //     size.ver += step;
-      //     size.hor += step;
-      //     draw_Ball(p,size)
-      //     step++
-      //     console.log(step)
+      function _action(fun){
+        return fun
+      }
+      var _go = setInterval(function(){
+          _clear(w,h)
+          size.ver += step;
+          size.hor += step;
+          draw_Ball(p,size)
+          step++
+          console.log(step)
 
-      // },t);
+      },t);
       var _stop = setTimeout(function(){
-       // clearInterval(_go)
-        //_clear(w,h)
-        draw_Boom()
+        clearInterval(_go)
+        _clear(w,h)
+        var _go2 = setInterval(function(){
+          _clear(w,h)
+          sizeb.ver += stepb;
+          sizeb.hor += stepb;
+          draw_Boom(pb,sizeb)
+          stepb++
+          console.log(stepb)
+
+      },t);
+      var _stop2 = setTimeout(function(){
+         clearInterval(_go2)
+        _clear(w,h)
+          var _go3 = setInterval(function(){
+          _clear(w,h)
+          sizeb.ver += stepb;
+          sizeb.hor += stepb;
+          draw_Boom(pb,sizeb)
+          stepb-=80;
+          console.log(stepb)
+          if(sizeb.ver<=0||sizeb.hor<=0){
+            clearInterval(_go3)
+            _clear(w,h)
+          }
+
+      },t);
+
+      },50)
+        
         clearTimeout(_stop)
         console.log(size)
-      },3000)
+      },tt)
     </script>
 </body>
 
